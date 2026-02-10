@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Formulario con Supabase</title>
 
-  <!-- Librería de Supabase -->
+  <!-- Supabase v2 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -19,22 +19,32 @@
 
   <p id="estado"></p>
 
-  <!-- TU CÓDIGO JS -->
   <script>
-    const supabaseUrl = "https://TU_PROYECTO.supabase.co";
+    // 🔹 IMPORTANTE: usar createClient directamente
+    const supabaseUrl = "https://gisugwlyjwtnqxnwlbdg.supabase.co";
     const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdpc3Vnd2x5and0bnF4bndsYmRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3NTczNTcsImV4cCI6MjA4NjMzMzM1N30.xstJIdDlE4--RPImhdbzxqWCa3fTZ2p92vSeN8jw2G0";
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    const supabaseClient = supabase.createClient(
+      supabaseUrl,
+      supabaseKey
+    );
 
     async function enviarMensaje() {
       const nombre = document.getElementById("nombre").value;
       const mensaje = document.getElementById("mensaje").value;
 
-      const { error } = await supabase
+      console.log("Intentando enviar...", nombre, mensaje);
+
+      const { error } = await supabaseClient
         .from("mensajes")
         .insert([{ nombre, mensaje }]);
 
       document.getElementById("estado").innerText =
         error ? "Error al enviar ❌" : "Mensaje guardado ✅";
+
+      if (error) {
+        console.error("Error Supabase:", error);
+      }
     }
   </script>
 
