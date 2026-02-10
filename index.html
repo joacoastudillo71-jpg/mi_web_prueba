@@ -2,10 +2,81 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi primera web</title>
+  <title>Supabase básico</title>
 </head>
 <body>
-  <h1>Hola mundo 🌍</h1>
-  <p>Esta es mi primera página web usando GitHub y Vercel</p>
+
+  <h1>Formulario con Supabase</h1>
+
+  <input id="nombre" placeholder="Tu nombre">
+  <br><br>
+  <textarea id="mensaje" placeholder="Tu mensaje"></textarea>
+  <br><br>
+  <button onclick="enviarMensaje()">Enviar</button>
+
+  <p id="estado"></p>
+
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+
+  <script>
+    const supabaseUrl = "<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Supabase básico</title>
+</head>
+<body>
+
+  <h1>Formulario con Supabase</h1>
+
+  <input id="nombre" placeholder="Tu nombre">
+  <br><br>
+  <textarea id="mensaje" placeholder="Tu mensaje"></textarea>
+  <br><br>
+  <button onclick="enviarMensaje()">Enviar</button>
+
+  <p id="estado"></p>
+
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+
+  <script>
+    const supabaseUrl = "https://gisugwlyjwtnqxnwlbdg.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdpc3Vnd2x5and0bnF4bndsYmRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3NTczNTcsImV4cCI6MjA4NjMzMzM1N30.xstJIdDlE4--RPImhdbzxqWCa3fTZ2p92vSeN8jw2G0";
+
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function enviarMensaje() {
+      const nombre = document.getElementById("nombre").value;
+      const mensaje = document.getElementById("mensaje").value;
+
+      const { error } = await supabase
+        .from("mensajes")
+        .insert([{ nombre, mensaje }]);
+
+      document.getElementById("estado").innerText =
+        error ? "Error al enviar ❌" : "Mensaje guardado ✅";
+    }
+  </script>
+
+</body>
+</html>
+";
+    const supabaseKey = "PEGA_AQUI_TU_ANON_KEY";
+
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function enviarMensaje() {
+      const nombre = document.getElementById("nombre").value;
+      const mensaje = document.getElementById("mensaje").value;
+
+      const { error } = await supabase
+        .from("mensajes")
+        .insert([{ nombre, mensaje }]);
+
+      document.getElementById("estado").innerText =
+        error ? "Error al enviar ❌" : "Mensaje guardado ✅";
+    }
+  </script>
+
 </body>
 </html>
